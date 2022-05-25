@@ -1,0 +1,62 @@
+<%- include("../partials/header.ejs") %>
+<section class="pt-5 pb-5">
+	<div class="container">
+		<% if(!showCart){ %>
+			<h3 class="display-5 mb-2 text-center">Shopping Cart</h3>
+			<hr><h1>No item in your cart</h1></hr><br>
+			<div class="noItemInCart">
+				<a href="/" class="btn btn-sm btn-outline-secondary">Click here to continue shopping.</a>
+			</div>
+		<% } else { %>
+	  <div class="row w-100">
+		  <div class="col-lg-12 col-md-12 col-12">
+			  <h3 class="display-5 mb-2 text-center">Shopping Cart</h3>
+			  <table id="shoppingCart" class="table table-condensed table-responsive">
+				  <thead>
+					  <tr>
+						  <th style="width:60%">Product</th>
+						  <th style="width:12%">Price</th>
+						  <th style="width:16%"></th>
+					  </tr>
+				  </thead>
+				  <% showCart.products.forEach(function(showProducts){ %>
+				  <tbody>
+					
+					  <tr>
+						  <td data-th="Product">
+							  <div class="row">
+								  <div class="col-md-3 text-left">
+									  <img src="<%= showProducts.image %>" height="300px" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+								  </div>
+								  <div class="col-md-9 text-left mt-sm-2">
+									  <h4><%= showProducts.Name %></h4>
+								  </div>
+							  </div>
+						  </td>
+						  <td data-th="Price"><%= showProducts.Price %></td>
+						  <td class="actions" data-th="">
+                            <div class="text-right">
+								<a href="/<%= showProducts._id %>/remove" class="btn btn-sm btn-outline-secondary">Remove</a>
+                            </div>
+                        </td>
+					  </tr>
+				  </tbody>
+				  <% }) %>
+			  </table>
+			  
+			  <div class="float-right text-right">
+				<h4>Total Price:</h4>
+				<h1><%= showCart.totalPrice %></h1>
+			</div>
+		  </div>
+	  </div>
+	  <div class="row mt-4 d-flex align-items-center">
+		  <div class="col-sm-6 order-md-2 text-right">
+			<a href="/<%= showCart._id %>/order" class="btn btn-sm btn-outline-secondary">Order</a>
+		  </div>
+	  </div>
+	  <% } %>
+  </div>
+  </section>
+  
+<%- include("../partials/footer.ejs") %>

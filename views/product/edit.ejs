@@ -1,0 +1,27 @@
+<%- include("../partials/header.ejs") %>
+
+<div class="container">
+<h1>Edit your product</h1>
+<form action="/<%= product._id %>?_method=PUT" method="POST" enctype="multipart/form-data"> <!--เปลี่ยน method POST เป็น method PUT ด้วย method override-->
+<div class="mb-3">
+    <label class="form-label">Name</label>
+    <input type="text" class="form-control" name="product[Name]" placeholder="<%= product.Name %>", value="<%= product.Name %>"> <!--value คือสำหรับกรณีที่ผู้ใช้จะไม่เปลี่ยนข้อมูล ข้อมูลจะใช้อันเดิม-->
+</div>
+<div class="mb-3">
+    <label class="form-label">Price</label>
+    <input type="text" class="form-control" name="product[Price]" placeholder="<%= product.Price %>", value="<%= product.Price %>">
+</div>
+<div class="mb-3">
+    <label class="form-label">Detail</label>
+    <input type="text" class="form-control" name="product[Detail]" placeholder="<%= product.Detail %>", value="<%= product.Detail %>">
+</div>
+<div class="mb-3">
+    <label class="form-label">Image</label>
+    <img src="<%= product.image %>" height="300px"> 
+    <input type="file" class="form-control" name="image" accept="image/*">
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+<a href="/">Go back</a>
+</form>
+</div>
+  <%- include("../partials/footer.ejs") %>

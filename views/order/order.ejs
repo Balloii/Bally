@@ -1,0 +1,38 @@
+<%- include("../partials/header.ejs") %>
+
+<div class="container">
+<h1>Your order</h1>
+<form action="/order/<%= foundCart._id %>/createOrder" method="POST">
+<div class="mb-3">
+    <label class="form-label">Your address</label>
+    <input type="text" class="form-control" name="order[address]" value="<%= foundCart.user.address %>">
+</div>
+<div class="mb-3">
+    <label class="form-label">Phone number</label>
+    <input type="text" class="form-control" name="order[phone]" value="<%= foundCart.user.phone %>">
+</div>
+<div class="mb-3">
+    <label class="form-label">E-mail</label>
+    <input type="text" class="form-control" name="order[email]" value="<%= foundCart.user.email %>">
+</div>
+<%= foundCart.Date %>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="Paymethod" value="Cash" id="flexRadioDefault2" checked>
+    <label class="form-check-label" for="flexRadioDefault2">
+      จ่ายเงินปลายทาง
+    </label>
+</div>
+<!-- 
+<% foundCart.products.forEach(function(showProducts){ %>
+    <%= showProducts.Name %>
+    <%= showProducts.Price %>
+    <img src="<%= showProducts.image %>" height="300px">
+<% }) %> -->
+<p>Total Price : <%= foundCart.totalPrice %></p><br>
+<p>Total Amount : <%= foundCart.totalAmount %></p><br>
+<p>Total Payment(+ 40) : <%= foundCart.totalPayment %> </p><br>
+<button type="submit" class="btn btn-primary">Confirm order</button>
+<!-- <a href="/">Go back</a> -->
+</form>
+</div>
+  <%- include("../partials/footer.ejs") %>
